@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
                         "json:target/cucumber.json"
                     },
             dryRun = false,
-            tags = "@api"
+            tags = ""
 
 )
 

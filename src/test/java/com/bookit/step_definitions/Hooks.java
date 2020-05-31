@@ -1,6 +1,7 @@
 package com.bookit.step_definitions;
 
 import com.bookit.utilities.DBUtility;
+import com.bookit.utilities.Driver;
 import com.bookit.utilities.Environment;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -22,7 +23,23 @@ public class Hooks {
      * This hook will be executed only for scenarios that are annotated with @db tag
      */
     @After("@db")
-    public void dbTearDown(){
+    public void dbTearDown() {
         DBUtility.destroy();
+    }
+
+
+
+    @Before("@ui")
+    public void uiSetup(){
+        Driver.getDriver().manage().window().maximize();
+
+    }
+
+    /**
+     * to close the driver in UI part
+     */
+    @After("@ui")
+    public void uiTearDown(){
+        Driver.closeDriver();
     }
 }

@@ -1,6 +1,8 @@
 package com.bookit.units;
 
 import com.bookit.utilities.APIUtilities;
+import com.bookit.utilities.Environment;
+import org.codehaus.groovy.classgen.EnumVisitor;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -26,4 +28,19 @@ public class APIUtilitiesUnitTests {
         Assert.assertNotNull(tokenForTeacher);
 
     }
+
+    @Test
+    public void testIfUserExists(){
+
+        //negative test
+        int actual = APIUtilities.getUserID("thereisnoemail@email.com", "88888");
+        Assert.assertEquals(-1, actual);
+
+        // positive test
+        int actual2 = APIUtilities.getUserID(Environment.MEMBER_USERNAME, Environment.MEMBER_PASSWORD);
+        Assert.assertTrue(actual2 > 0); // if ID is positive - user exists indeed, otherwise it return -1
+    }
+
+
+
 }
